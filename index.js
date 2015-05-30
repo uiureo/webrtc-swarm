@@ -74,7 +74,9 @@ module.exports = function (hub, opts) {
     })
   }
 
-  hub.subscribe(me).once('open', connect).pipe(through.obj(function (data, enc, cb) {
+  setTimeout(connect, 0)
+
+  hub.subscribe(me).pipe(through.obj(function (data, enc, cb) {
     var peer = remotes[data.from]
 
     if (!peer) {
